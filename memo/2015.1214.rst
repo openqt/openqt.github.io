@@ -1,0 +1,54 @@
+2015.12.14
+=================================
+
+9::00，现在开始，每天早晨刷一道leetcode题目练习脑力。
+
+10:00，先是折腾readthedocs，继而去学习reStructuredText文本格式，又想起来vim的配置还没有折腾好(⊙﹏⊙)b
+
+刚刚看到之前做了一点的lc263，想给每个解法加入版本号以便日后继续优化和修改，又开始调研Python编码问题-_-|||。
+虽然平时知道如何定义编码，但是没有认真读过文档定义，这回算是补上了。
+
+
+`PEP 0263 -- Defining Python Source Code Encodings <https://www.python.org/dev/peps/pep-0263/>`_
+
+::
+
+    Defining the Encoding
+        Python will default to ASCII as standard encoding if no other
+        encoding hints are given.
+
+        To define a source code encoding, a magic comment must
+        be placed into the source files either as first or second
+        line in the file, such as:
+
+              # coding=<encoding name>
+
+        or (using formats recognized by popular editors)
+
+              #!/usr/bin/python
+              # -*- coding: <encoding name> -*-
+
+        or
+
+              #!/usr/bin/python
+              # vim: set fileencoding=<encoding name> :
+
+`PEP 0257 -- Docstring Conventions <https://www.python.org/dev/peps/pep-0257/>`_
+
+11:20，搞定reStructuredText格式╮(╯▽╰)╭
+
+
+13:00，
+
+::
+
+    T平台的目标是在2016年达到5000万-1亿用户量，2018年要达到3亿-4亿用户量。
+
+回想起来，我很庆幸有在L公司工作的6个月经历。那段时间里我从传统软件行业的边角料开发正式转向互联网，
+从而开始学习了到目前为止我所需要的大部分技术基础，包括WEB框架、NoSQL、docker以及必要的Linux基础。
+时间很短，但是收获很多，有时我觉得我应该早点进入互联网行业，早些从传统软件开发、测试转型，
+我应该能够更早的站在浪潮的峰顶上看技术变迁。
+
+现在我开始补一些开发规范的知识，更好的贴近开源社区的工作方式、使用的工具链。
+
+
