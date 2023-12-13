@@ -146,6 +146,106 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/12/07/setup-seaweedfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jack Chu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏莎行">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/07/setup-seaweedfs/" class="post-title-link" itemprop="url">SeaweedFS安装笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-07 11:20:46" itemprop="dateCreated datePublished" datetime="2023-12-07T11:20:46+08:00">2023-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-13 16:27:00" itemprop="dateModified" datetime="2023-12-13T16:27:00+08:00">2023-12-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/it/fs/" itemprop="url" rel="index"><span itemprop="name">fs</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="SeaweedFS"><a href="#SeaweedFS" class="headerlink" title="SeaweedFS"></a>SeaweedFS</h1><p><a target="_blank" rel="noopener" href="https://github.com/seaweedfs">项目主页</a></p>
+<h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><p>运行环境是一台12C16G的KVM虚拟机</p>
+<ul>
+<li>操作系统是CentOS-7.9<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure></li>
+<li>Kubernetes是k3s-1.28<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl version</span><br><span class="line">Client Version: v1.28.3+k3s2</span><br><span class="line">Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3</span><br><span class="line">Server Version: v1.28.3+k3s2</span><br></pre></td></tr></table></figure></li>
+<li>虚拟机内配置了3块磁盘sda-sdc<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ lsblk</span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  200G  0 disk </span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sdc      8:32   0  200G  0 disk </span><br><span class="line">sr0     11:0    1    1M  0 rom  </span><br><span class="line">vda    253:0    0  200G  0 disk </span><br><span class="line">`-vda1 253:1    0  200G  0 part /</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="安装SeaweedFS-Operator"><a href="#安装SeaweedFS-Operator" class="headerlink" title="安装SeaweedFS Operator"></a>安装SeaweedFS Operator</h2><p>先安装operator看看能自动配置到什么程度，安装文档：<a target="_blank" rel="noopener" href="https://github.com/seaweedfs/seaweedfs-operator#installation">https://github.com/seaweedfs/seaweedfs-operator#installation</a></p>
+<ul>
+<li>安装kustomize<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.2.1/kustomize_v5.2.1_linux_amd64.tar.gz</span><br><span class="line">$ tar xvf kustomize_v5.2.1_linux_amd64.tar.gz</span><br><span class="line">$ sudo <span class="built_in">mv</span> kustomize /usr/local/bin/</span><br></pre></td></tr></table></figure></li>
+<li>安装cert-manager<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml</span><br><span class="line">$ $ kubectl apply -f cert-manager.yaml </span><br><span class="line">namespace/cert-manager created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/certificaterequests.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/certificates.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/challenges.acme.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/clusterissuers.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/issuers.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io created</span><br><span class="line">serviceaccount/cert-manager-cainjector created</span><br><span class="line">serviceaccount/cert-manager created</span><br><span class="line">serviceaccount/cert-manager-webhook created</span><br><span class="line">configmap/cert-manager created</span><br><span class="line">configmap/cert-manager-webhook created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-cainjector created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-issuers created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificates created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-orders created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-challenges created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-cluster-view created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-view created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-edit created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-cainjector created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-issuers created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificates created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-orders created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-challenges created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager:leaderelection created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager:leaderelection created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created</span><br><span class="line">service/cert-manager created</span><br><span class="line">service/cert-manager-webhook created</span><br><span class="line">deployment.apps/cert-manager-cainjector created</span><br><span class="line">deployment.apps/cert-manager created</span><br><span class="line">deployment.apps/cert-manager-webhook created</span><br><span class="line">mutatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created</span><br><span class="line">validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created</span><br></pre></td></tr></table></figure></li>
+<li>查看cert-manager安装情况<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl -n cert-manager get all</span><br><span class="line">Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed <span class="keyword">in</span> v2.</span><br><span class="line">NAME                                          READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/cert-manager-cainjector-c778d44d8-pn8j9   1/1     Running   0          6m53s</span><br><span class="line">pod/cert-manager-7d75f47cc5-z4fwt             1/1     Running   0          6m53s</span><br><span class="line">pod/cert-manager-webhook-55d76f97bb-dt6qh     1/1     Running   0          6m53s</span><br><span class="line"></span><br><span class="line">NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE</span><br><span class="line">service/cert-manager           ClusterIP   10.43.196.173   &lt;none&gt;        9402/TCP   6m53s</span><br><span class="line">service/cert-manager-webhook   ClusterIP   10.43.157.218   &lt;none&gt;        443/TCP    6m53s</span><br><span class="line"></span><br><span class="line">NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/cert-manager-cainjector   1/1     1            1           6m53s</span><br><span class="line">deployment.apps/cert-manager              1/1     1            1           6m53s</span><br><span class="line">deployment.apps/cert-manager-webhook      1/1     1            1           6m53s</span><br><span class="line"></span><br><span class="line">NAME                                                DESIRED   CURRENT   READY   AGE</span><br><span class="line">replicaset.apps/cert-manager-cainjector-c778d44d8   1         1         1       6m53s</span><br><span class="line">replicaset.apps/cert-manager-7d75f47cc5             1         1         1       6m53s</span><br><span class="line">replicaset.apps/cert-manager-webhook-55d76f97bb     1         1         1       6m53s</span><br></pre></td></tr></table></figure></li>
+<li>安装controller-gen<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line">$ go install sigs.k8s.io/controller-tools/cmd/controller-gen@v0.13.0</span><br></pre></td></tr></table></figure></li>
+<li>安装docker<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y yum-utils</span><br><span class="line">$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">$ sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure></li>
+<li>测试docker<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run hello-world</span><br></pre></td></tr></table></figure></li>
+<li>可以预先下载镜像并scp到环境中，测试环境配置.ssh&#x2F;config名称为test<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull gcr.io/distroless/static:nonroot</span><br><span class="line">$ docker save -o static.tar gcr.io/distroless/static:nonroot</span><br><span class="line">$ scp static.tar <span class="built_in">test</span>:</span><br><span class="line"></span><br><span class="line">$ docker load -i ~/static.tar </span><br><span class="line">54ad2ec71039: Loading layer [==================================================&gt;]  327.7kB/327.7kB</span><br><span class="line">6fbdf253bbc2: Loading layer [==================================================&gt;]   51.2kB/51.2kB</span><br><span class="line">7bea6b893187: Loading layer [==================================================&gt;]  3.205MB/3.205MB</span><br><span class="line">ff5700ec5418: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">d52f02c6501c: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">e624a5370eca: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">1a73b54f556b: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">d2d7ec0f6756: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">4cb10dd2545b: Loading layer [==================================================&gt;]  225.3kB/225.3kB</span><br><span class="line">Loaded image: gcr.io/distroless/static:nonroot</span><br></pre></td></tr></table></figure></li>
+<li>编译seaweedfs-operator镜像<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ make docker-build</span><br><span class="line"><span class="built_in">echo</span> chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">docker build . -t chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">[+] Building 0.8s (17/17) FINISHED</span><br><span class="line"> =&gt; [internal] load .dockerignore</span><br><span class="line"> =&gt; =&gt; transferring context: 2B</span><br><span class="line"> =&gt; [internal] load build definition from Dockerfile</span><br><span class="line"> =&gt; =&gt; transferring dockerfile: 909B</span><br><span class="line"> =&gt; [internal] load metadata <span class="keyword">for</span> gcr.io/distroless/static:nonroot</span><br><span class="line"> =&gt; [internal] load metadata <span class="keyword">for</span> docker.io/library/golang:1.21</span><br><span class="line"> =&gt; [stage-1 1/3] FROM gcr.io/distroless/static:nonroot</span><br><span class="line"> =&gt; [builder 1/9] FROM docker.io/library/golang:1.21</span><br><span class="line"> =&gt; [internal] load build context</span><br><span class="line"> =&gt; =&gt; transferring context: 1.83kB</span><br><span class="line"> =&gt; CACHED [builder 2/9] WORKDIR /workspace</span><br><span class="line"> =&gt; CACHED [builder 3/9] COPY go.mod go.mod</span><br><span class="line"> =&gt; CACHED [builder 4/9] COPY go.sum go.sum</span><br><span class="line"> =&gt; CACHED [builder 5/9] RUN go mod download</span><br><span class="line"> =&gt; CACHED [builder 6/9] COPY main.go main.go</span><br><span class="line"> =&gt; CACHED [builder 7/9] COPY api/ api/</span><br><span class="line"> =&gt; CACHED [builder 8/9] COPY controllers/ controllers/</span><br><span class="line"> =&gt; CACHED [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -ldflags=<span class="string">&quot;-s -w&quot;</span> -a -o manager main.go</span><br><span class="line"> =&gt; CACHED [stage-1 2/3] COPY --from=builder /workspace/manager .</span><br><span class="line"> =&gt; exporting to image</span><br><span class="line"> =&gt; =&gt; exporting layers</span><br><span class="line"> =&gt; =&gt; writing image sha256:e978becdc9be42b787a6caa9fa94b6977560d51b807f15d0260f225dbcb61882</span><br><span class="line"> =&gt; =&gt; naming to docker.io/chrislusf/seaweedfs-operator:v0.0.1</span><br></pre></td></tr></table></figure></li>
+<li>安装seaweedfs-operator的CRD<br>目前代码里面有错误，需要修改<code>api/v1/seaweed_webhook.go</code>内的配置注释如下,<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// +kubebuilder:webhook:sideEffects=None,admissionReviewVersions=v1,...</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ make install</span><br><span class="line">/usr/local/bin/controller-gen crd rbac:roleName=manager-role webhook paths=<span class="string">&quot;./...&quot;</span> output:crd:artifacts:config=config/crd/bases</span><br><span class="line">/usr/local/bin/kustomize build config/crd | kubectl apply -f -</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/seaweeds.seaweed.seaweedfs.com unchanged</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$  helm install seaweedfs-operator ./deploy/helm</span><br><span class="line">NAME: seaweedfs-operator</span><br><span class="line">LAST DEPLOYED: Wed Dec 13 16:16:27 2023</span><br><span class="line">NAMESPACE: default</span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get po </span><br><span class="line">NAME                                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">seaweedfs-operator-585b95c8ff-g58st   1/1     Running   0          8m14s</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>至此seaweedfs-operator部署成功，但是功能还不能正常运行，需要进一步调研。<br>目前看seaweedfs-operator完成度较低，使用上问题应该很多，还是应该避免通过这个operator部署。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/12/01/setup-lazy-vim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -169,10 +269,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-12-01 16:09:00 / 修改时间：17:14:56" itemprop="dateCreated datePublished" datetime="2023-12-01T16:09:00+08:00">2023-12-01</time>
+              <time title="创建时间：2023-12-01 16:09:00" itemprop="dateCreated datePublished" datetime="2023-12-01T16:09:00+08:00">2023-12-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-04 09:51:36" itemprop="dateModified" datetime="2023-12-04T09:51:36+08:00">2023-12-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -206,7 +312,10 @@
 <li>通过git直接clone代码<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/LazyVim/starter ~/.config/nvim</span><br><span class="line">Cloning into <span class="string">&#x27;/home/yang/.config/nvim&#x27;</span>...</span><br><span class="line">remote: Enumerating objects: 183, <span class="keyword">done</span>.</span><br><span class="line">remote: Total 183 (delta 0), reused 0 (delta 0), pack-reused 183</span><br><span class="line">Receiving objects: 100% (183/183), 55.07 KiB | 503.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (73/73), <span class="keyword">done</span>.</span><br><span class="line">$ <span class="built_in">rm</span> -rf ~/.config/nvim/.git</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h1 id="使用nvim"><a href="#使用nvim" class="headerlink" title="使用nvim"></a>使用nvim</h1><ul>
-<li>参考默认键配置：<a target="_blank" rel="noopener" href="https://www.lazyvim.org/keymaps">https://www.lazyvim.org/keymaps</a><br>浏览状态按空格键可以看提示，按两下空格键弹窗。</li>
+<li><p>参考默认键配置：<a target="_blank" rel="noopener" href="https://www.lazyvim.org/keymaps">https://www.lazyvim.org/keymaps</a><br>浏览状态按空格键可以看提示，按两下空格键弹窗。</p>
+</li>
+<li><p>安装ripgrep</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ brew install ripgrep</span><br><span class="line">$ rg -V</span><br><span class="line">ripgrep 14.0.3</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -250,10 +359,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-11-30 14:18:50 / 修改时间：19:50:26" itemprop="dateCreated datePublished" datetime="2023-11-30T14:18:50+08:00">2023-11-30</time>
+              <time title="创建时间：2023-11-30 14:18:50" itemprop="dateCreated datePublished" datetime="2023-11-30T14:18:50+08:00">2023-11-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-07 11:24:24" itemprop="dateModified" datetime="2023-12-07T11:24:24+08:00">2023-12-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -279,7 +394,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><p>运行环境是一台12C16G的KVM虚拟机</p>
+          <h1 id="KubeVirt"><a href="#KubeVirt" class="headerlink" title="KubeVirt"></a>KubeVirt</h1><h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><p>运行环境是一台12C16G的KVM虚拟机</p>
 <ul>
 <li>操作系统是CentOS-7.9<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure></li>
 <li>Kubernetes是k3s-1.28<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl version</span><br><span class="line">Client Version: v1.28.3+k3s2</span><br><span class="line">Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3</span><br><span class="line">Server Version: v1.28.3+k3s2</span><br></pre></td></tr></table></figure></li>
@@ -743,16 +858,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

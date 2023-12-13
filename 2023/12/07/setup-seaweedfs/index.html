@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"openqt.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="SeaweedFS项目主页 环境信息运行环境是一台12C16G的KVM虚拟机  操作系统是CentOS-7.912$ cat &#x2F;etc&#x2F;redhat-release CentOS Linux release 7.9.2009 (Core) Kubernetes是k3s-1.281234$ kubectl versionClient Version: v1.28.3+k3s2Kustomize Ve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SeaweedFS安装笔记">
+<meta property="og:url" content="https://openqt.github.io/2023/12/07/setup-seaweedfs/index.html">
+<meta property="og:site_name" content="踏莎行">
+<meta property="og:description" content="SeaweedFS项目主页 环境信息运行环境是一台12C16G的KVM虚拟机  操作系统是CentOS-7.912$ cat &#x2F;etc&#x2F;redhat-release CentOS Linux release 7.9.2009 (Core) Kubernetes是k3s-1.281234$ kubectl versionClient Version: v1.28.3+k3s2Kustomize Ve">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-07T03:20:46.000Z">
+<meta property="article:modified_time" content="2023-12-13T08:27:00.017Z">
+<meta property="article:author" content="Jack Chu">
+<meta property="article:tag" content="programming">
+<meta property="article:tag" content="seaweedfs">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://openqt.github.io/2023/12/07/setup-seaweedfs/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SeaweedFS安装笔记 | 踏莎行</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">踏莎行</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">驿寄梅花，鱼传尺素</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/12/07/setup-seaweedfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jack Chu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="踏莎行">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SeaweedFS安装笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-07 11:20:46" itemprop="dateCreated datePublished" datetime="2023-12-07T11:20:46+08:00">2023-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-13 16:27:00" itemprop="dateModified" datetime="2023-12-13T16:27:00+08:00">2023-12-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/it/fs/" itemprop="url" rel="index"><span itemprop="name">fs</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="SeaweedFS"><a href="#SeaweedFS" class="headerlink" title="SeaweedFS"></a>SeaweedFS</h1><p><a target="_blank" rel="noopener" href="https://github.com/seaweedfs">项目主页</a></p>
+<h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><p>运行环境是一台12C16G的KVM虚拟机</p>
+<ul>
+<li>操作系统是CentOS-7.9<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure></li>
+<li>Kubernetes是k3s-1.28<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl version</span><br><span class="line">Client Version: v1.28.3+k3s2</span><br><span class="line">Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3</span><br><span class="line">Server Version: v1.28.3+k3s2</span><br></pre></td></tr></table></figure></li>
+<li>虚拟机内配置了3块磁盘sda-sdc<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ lsblk</span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  200G  0 disk </span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sdc      8:32   0  200G  0 disk </span><br><span class="line">sr0     11:0    1    1M  0 rom  </span><br><span class="line">vda    253:0    0  200G  0 disk </span><br><span class="line">`-vda1 253:1    0  200G  0 part /</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="安装SeaweedFS-Operator"><a href="#安装SeaweedFS-Operator" class="headerlink" title="安装SeaweedFS Operator"></a>安装SeaweedFS Operator</h2><p>先安装operator看看能自动配置到什么程度，安装文档：<a target="_blank" rel="noopener" href="https://github.com/seaweedfs/seaweedfs-operator#installation">https://github.com/seaweedfs/seaweedfs-operator#installation</a></p>
+<ul>
+<li>安装kustomize<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.2.1/kustomize_v5.2.1_linux_amd64.tar.gz</span><br><span class="line">$ tar xvf kustomize_v5.2.1_linux_amd64.tar.gz</span><br><span class="line">$ sudo <span class="built_in">mv</span> kustomize /usr/local/bin/</span><br></pre></td></tr></table></figure></li>
+<li>安装cert-manager<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml</span><br><span class="line">$ $ kubectl apply -f cert-manager.yaml </span><br><span class="line">namespace/cert-manager created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/certificaterequests.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/certificates.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/challenges.acme.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/clusterissuers.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/issuers.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io created</span><br><span class="line">serviceaccount/cert-manager-cainjector created</span><br><span class="line">serviceaccount/cert-manager created</span><br><span class="line">serviceaccount/cert-manager-webhook created</span><br><span class="line">configmap/cert-manager created</span><br><span class="line">configmap/cert-manager-webhook created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-cainjector created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-issuers created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificates created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-orders created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-challenges created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-cluster-view created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-view created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-edit created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-cainjector created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-issuers created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificates created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-orders created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-challenges created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager:leaderelection created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager:leaderelection created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created</span><br><span class="line">service/cert-manager created</span><br><span class="line">service/cert-manager-webhook created</span><br><span class="line">deployment.apps/cert-manager-cainjector created</span><br><span class="line">deployment.apps/cert-manager created</span><br><span class="line">deployment.apps/cert-manager-webhook created</span><br><span class="line">mutatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created</span><br><span class="line">validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created</span><br></pre></td></tr></table></figure></li>
+<li>查看cert-manager安装情况<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl -n cert-manager get all</span><br><span class="line">Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed <span class="keyword">in</span> v2.</span><br><span class="line">NAME                                          READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/cert-manager-cainjector-c778d44d8-pn8j9   1/1     Running   0          6m53s</span><br><span class="line">pod/cert-manager-7d75f47cc5-z4fwt             1/1     Running   0          6m53s</span><br><span class="line">pod/cert-manager-webhook-55d76f97bb-dt6qh     1/1     Running   0          6m53s</span><br><span class="line"></span><br><span class="line">NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE</span><br><span class="line">service/cert-manager           ClusterIP   10.43.196.173   &lt;none&gt;        9402/TCP   6m53s</span><br><span class="line">service/cert-manager-webhook   ClusterIP   10.43.157.218   &lt;none&gt;        443/TCP    6m53s</span><br><span class="line"></span><br><span class="line">NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/cert-manager-cainjector   1/1     1            1           6m53s</span><br><span class="line">deployment.apps/cert-manager              1/1     1            1           6m53s</span><br><span class="line">deployment.apps/cert-manager-webhook      1/1     1            1           6m53s</span><br><span class="line"></span><br><span class="line">NAME                                                DESIRED   CURRENT   READY   AGE</span><br><span class="line">replicaset.apps/cert-manager-cainjector-c778d44d8   1         1         1       6m53s</span><br><span class="line">replicaset.apps/cert-manager-7d75f47cc5             1         1         1       6m53s</span><br><span class="line">replicaset.apps/cert-manager-webhook-55d76f97bb     1         1         1       6m53s</span><br></pre></td></tr></table></figure></li>
+<li>安装controller-gen<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line">$ go install sigs.k8s.io/controller-tools/cmd/controller-gen@v0.13.0</span><br></pre></td></tr></table></figure></li>
+<li>安装docker<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y yum-utils</span><br><span class="line">$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">$ sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure></li>
+<li>测试docker<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run hello-world</span><br></pre></td></tr></table></figure></li>
+<li>可以预先下载镜像并scp到环境中，测试环境配置.ssh&#x2F;config名称为test<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull gcr.io/distroless/static:nonroot</span><br><span class="line">$ docker save -o static.tar gcr.io/distroless/static:nonroot</span><br><span class="line">$ scp static.tar <span class="built_in">test</span>:</span><br><span class="line"></span><br><span class="line">$ docker load -i ~/static.tar </span><br><span class="line">54ad2ec71039: Loading layer [==================================================&gt;]  327.7kB/327.7kB</span><br><span class="line">6fbdf253bbc2: Loading layer [==================================================&gt;]   51.2kB/51.2kB</span><br><span class="line">7bea6b893187: Loading layer [==================================================&gt;]  3.205MB/3.205MB</span><br><span class="line">ff5700ec5418: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">d52f02c6501c: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">e624a5370eca: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">1a73b54f556b: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">d2d7ec0f6756: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">4cb10dd2545b: Loading layer [==================================================&gt;]  225.3kB/225.3kB</span><br><span class="line">Loaded image: gcr.io/distroless/static:nonroot</span><br></pre></td></tr></table></figure></li>
+<li>编译seaweedfs-operator镜像<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ make docker-build</span><br><span class="line"><span class="built_in">echo</span> chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">docker build . -t chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">[+] Building 0.8s (17/17) FINISHED</span><br><span class="line"> =&gt; [internal] load .dockerignore</span><br><span class="line"> =&gt; =&gt; transferring context: 2B</span><br><span class="line"> =&gt; [internal] load build definition from Dockerfile</span><br><span class="line"> =&gt; =&gt; transferring dockerfile: 909B</span><br><span class="line"> =&gt; [internal] load metadata <span class="keyword">for</span> gcr.io/distroless/static:nonroot</span><br><span class="line"> =&gt; [internal] load metadata <span class="keyword">for</span> docker.io/library/golang:1.21</span><br><span class="line"> =&gt; [stage-1 1/3] FROM gcr.io/distroless/static:nonroot</span><br><span class="line"> =&gt; [builder 1/9] FROM docker.io/library/golang:1.21</span><br><span class="line"> =&gt; [internal] load build context</span><br><span class="line"> =&gt; =&gt; transferring context: 1.83kB</span><br><span class="line"> =&gt; CACHED [builder 2/9] WORKDIR /workspace</span><br><span class="line"> =&gt; CACHED [builder 3/9] COPY go.mod go.mod</span><br><span class="line"> =&gt; CACHED [builder 4/9] COPY go.sum go.sum</span><br><span class="line"> =&gt; CACHED [builder 5/9] RUN go mod download</span><br><span class="line"> =&gt; CACHED [builder 6/9] COPY main.go main.go</span><br><span class="line"> =&gt; CACHED [builder 7/9] COPY api/ api/</span><br><span class="line"> =&gt; CACHED [builder 8/9] COPY controllers/ controllers/</span><br><span class="line"> =&gt; CACHED [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -ldflags=<span class="string">&quot;-s -w&quot;</span> -a -o manager main.go</span><br><span class="line"> =&gt; CACHED [stage-1 2/3] COPY --from=builder /workspace/manager .</span><br><span class="line"> =&gt; exporting to image</span><br><span class="line"> =&gt; =&gt; exporting layers</span><br><span class="line"> =&gt; =&gt; writing image sha256:e978becdc9be42b787a6caa9fa94b6977560d51b807f15d0260f225dbcb61882</span><br><span class="line"> =&gt; =&gt; naming to docker.io/chrislusf/seaweedfs-operator:v0.0.1</span><br></pre></td></tr></table></figure></li>
+<li>安装seaweedfs-operator的CRD<br>目前代码里面有错误，需要修改<code>api/v1/seaweed_webhook.go</code>内的配置注释如下,<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// +kubebuilder:webhook:sideEffects=None,admissionReviewVersions=v1,...</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ make install</span><br><span class="line">/usr/local/bin/controller-gen crd rbac:roleName=manager-role webhook paths=<span class="string">&quot;./...&quot;</span> output:crd:artifacts:config=config/crd/bases</span><br><span class="line">/usr/local/bin/kustomize build config/crd | kubectl apply -f -</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/seaweeds.seaweed.seaweedfs.com unchanged</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$  helm install seaweedfs-operator ./deploy/helm</span><br><span class="line">NAME: seaweedfs-operator</span><br><span class="line">LAST DEPLOYED: Wed Dec 13 16:16:27 2023</span><br><span class="line">NAMESPACE: default</span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get po </span><br><span class="line">NAME                                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">seaweedfs-operator-585b95c8ff-g58st   1/1     Running   0          8m14s</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>至此seaweedfs-operator部署成功，但是功能还不能正常运行，需要进一步调研。<br>目前看seaweedfs-operator完成度较低，使用上问题应该很多，还是应该避免通过这个operator部署。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/programming/" rel="tag"># programming</a>
+              <a href="/tags/seaweedfs/" rel="tag"># seaweedfs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/01/setup-lazy-vim/" rel="prev" title="LazyVim安装笔记">
+      <i class="fa fa-chevron-left"></i> LazyVim安装笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SeaweedFS"><span class="nav-number">1.</span> <span class="nav-text">SeaweedFS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E4%BF%A1%E6%81%AF"><span class="nav-number">1.1.</span> <span class="nav-text">环境信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85SeaweedFS-Operator"><span class="nav-number">1.2.</span> <span class="nav-text">安装SeaweedFS Operator</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jack Chu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Chu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
