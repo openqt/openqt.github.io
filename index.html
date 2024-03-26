@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 7.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -17,13 +17,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"openqt.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"openqt.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="踏莎行">
+  <meta name="description" content="伤心桥下春波绿，曾是惊鸿照影来。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="在人间">
 <meta property="og:url" content="https://openqt.github.io/index.html">
-<meta property="og:site_name" content="踏莎行">
+<meta property="og:site_name" content="在人间">
+<meta property="og:description" content="伤心桥下春波绿，曾是惊鸿照影来。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Jack Chu">
 <meta name="twitter:card" content="summary">
@@ -41,7 +43,7 @@
   };
 </script>
 
-  <title>踏莎行</title>
+  <title>在人间</title>
   
 
 
@@ -92,10 +94,9 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">踏莎行</h1>
+      <h1 class="site-title">在人间</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">驿寄梅花，鱼传尺素</p>
   </div>
 
   <div class="site-nav-right">
@@ -112,6 +113,16 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -151,16 +162,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="伤心桥下春波绿，曾是惊鸿照影来。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
+      <meta itemprop="name" content="在人间">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/03/25/deploy-acccessable-harbor-in-kind/" class="post-title-link" itemprop="url">deploy acccessable harbor in kind</a>
+            <a href="/2024/03/25/deploy-acccessable-harbor-in-kind/" class="post-title-link" itemprop="url">kind集群内部署可访问的Harbor服务</a>
         </h2>
 
         <div class="post-meta">
@@ -169,10 +180,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-03-25 13:36:30 / 修改时间：18:56:16" itemprop="dateCreated datePublished" datetime="2024-03-25T13:36:30+08:00">2024-03-25</time>
+              <time title="创建时间：2024-03-25 13:36:30" itemprop="dateCreated datePublished" datetime="2024-03-25T13:36:30+08:00">2024-03-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-26 10:55:30" itemprop="dateModified" datetime="2024-03-26T10:55:30+08:00">2024-03-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -198,7 +215,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="kind集群内部署可访问的Harbor服务"><a href="#kind集群内部署可访问的Harbor服务" class="headerlink" title="kind集群内部署可访问的Harbor服务"></a>kind集群内部署可访问的Harbor服务</h1><h2 id="部署Kubernetes及必要服务"><a href="#部署Kubernetes及必要服务" class="headerlink" title="部署Kubernetes及必要服务"></a>部署Kubernetes及必要服务</h2><ul>
+          <h2 id="部署Kubernetes及必要服务"><a href="#部署Kubernetes及必要服务" class="headerlink" title="部署Kubernetes及必要服务"></a>部署Kubernetes及必要服务</h2><ul>
 <li><p>docker版本24.0.5</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ docker version</span><br><span class="line">Client:</span><br><span class="line"> Version:           24.0.5</span><br><span class="line"> API version:       1.43</span><br><span class="line"> Go version:        go1.20.3</span><br><span class="line"> Git commit:        24.0.5-0ubuntu1~22.04.1</span><br><span class="line"> Built:             Mon Aug 21 19:50:14 2023</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          24.0.5</span><br><span class="line">  API version:      1.43 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.20.3</span><br><span class="line">  Git commit:       24.0.5-0ubuntu1~22.04.1</span><br><span class="line">  Built:            Mon Aug 21 19:50:14 2023</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     <span class="literal">true</span></span><br><span class="line"> containerd:</span><br><span class="line">  Version:          1.7.2</span><br><span class="line">  GitCommit:        </span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.1.0-0ubuntu1.1</span><br><span class="line">  GitCommit:        </span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:        </span><br></pre></td></tr></table></figure>
 </li>
@@ -269,7 +286,8 @@
 <li><p>访问harbor页面，输入之前配置的admin的密码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://harbor.internal.com:21000</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="修改Harbor服务类型"><a href="#修改Harbor服务类型" class="headerlink" title="修改Harbor服务类型"></a>修改Harbor服务类型</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">StatefulSet</span> <span class="string">=&gt;</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">    <span class="string">serviceName</span> <span class="comment"># 需要注释掉</span></span><br><span class="line">    <span class="string">updateStrategy</span> <span class="string">=&gt;</span> <span class="string">strategy</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 需要将整个volumeClaimTemplates改为PersistentVolumeClaim形式</span></span><br><span class="line">    <span class="comment"># 同时要增加volumes声明域</span></span><br><span class="line">    <span class="string">volumeClaimTemplates</span> <span class="string">=&gt;</span> <span class="string">PersistentVolumeClaim</span> </span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">data</span></span><br><span class="line">          <span class="attr">persistentVolumeClaim:</span></span><br><span class="line">            <span class="attr">claimName:</span> <span class="string">data</span></span><br></pre></td></tr></table></figure>
+<h2 id="修改Harbor服务类型"><a href="#修改Harbor服务类型" class="headerlink" title="修改Harbor服务类型"></a>修改Harbor服务类型</h2><p>从Statefulset修改为Deployment。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">StatefulSet</span> <span class="string">=&gt;</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">    <span class="comment"># serviceName # 需要注释掉</span></span><br><span class="line">    <span class="string">updateStrategy</span> <span class="string">=&gt;</span> <span class="string">strategy</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 需要将整个volumeClaimTemplates改为PersistentVolumeClaim形式</span></span><br><span class="line">    <span class="comment"># 同时要增加volumes声明域</span></span><br><span class="line">    <span class="string">volumeClaimTemplates</span> <span class="string">=&gt;</span> <span class="string">PersistentVolumeClaim</span> </span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">data</span></span><br><span class="line">          <span class="attr">persistentVolumeClaim:</span></span><br><span class="line">            <span class="attr">claimName:</span> <span class="string">data</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -294,16 +312,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="伤心桥下春波绿，曾是惊鸿照影来。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
+      <meta itemprop="name" content="在人间">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/01/19/ml-basic/" class="post-title-link" itemprop="url">machine learning basic</a>
+            <a href="/2024/01/19/ml-basic/" class="post-title-link" itemprop="url">机器学习基础</a>
         </h2>
 
         <div class="post-meta">
@@ -312,21 +330,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-01-19 15:04:03 / 修改时间：15:56:49" itemprop="dateCreated datePublished" datetime="2024-01-19T15:04:03+08:00">2024-01-19</time>
+              <time title="创建时间：2024-01-19 15:04:03" itemprop="dateCreated datePublished" datetime="2024-01-19T15:04:03+08:00">2024-01-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-26 10:56:34" itemprop="dateModified" datetime="2024-03-26T10:56:34+08:00">2024-03-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a>
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a>
                 </span>
             </span>
 
@@ -341,7 +361,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="机器学习基础"><a href="#机器学习基础" class="headerlink" title="机器学习基础"></a>机器学习基础</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/500366203">方差，标准差中要求差的平方的原因及其几何意义</a></p>
+          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/500366203">方差，标准差中要求差的平方的原因及其几何意义</a></p>
 <h2 id="下采样和上采样"><a href="#下采样和上采样" class="headerlink" title="下采样和上采样"></a>下采样和上采样</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/579702765">上采样(UnSampling)和下采样(DownSampling)是啥</a></p>
 <p>缩小图像（或称为下采样（subsampled）或降采样（downsampled））的主要目的有两个：</p>
 <ol>
@@ -377,11 +397,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="伤心桥下春波绿，曾是惊鸿照影来。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
+      <meta itemprop="name" content="在人间">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -403,7 +423,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-01 17:20:49" itemprop="dateModified" datetime="2024-03-01T17:20:49+08:00">2024-03-01</time>
+                <time title="修改时间：2024-03-26 10:58:56" itemprop="dateModified" datetime="2024-03-26T10:58:56+08:00">2024-03-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -411,11 +431,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
+                  <a href="/categories/devops/" itemprop="url" rel="index"><span itemprop="name">devops</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a>
+                  <a href="/categories/devops/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a>
                 </span>
             </span>
 
@@ -457,486 +477,21 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/12/27/video-translation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/27/video-translation/" class="post-title-link" itemprop="url">Video Translation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-12-27 17:03:57 / 修改时间：17:45:06" itemprop="dateCreated datePublished" datetime="2023-12-27T17:03:57+08:00">2023-12-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="视频的语音翻译与字幕合成"><a href="#视频的语音翻译与字幕合成" class="headerlink" title="视频的语音翻译与字幕合成"></a>视频的语音翻译与字幕合成</h1><p>以前都是字幕组用爱发电，现在人工智能已经发展的很好，基本的语音翻译与字幕合成应该可以交给AI处理了吧。<br>本文即是自动翻译与字幕合成的一次尝试。</p>
-<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="流程简述"><a href="#流程简述" class="headerlink" title="流程简述"></a>流程简述</h2><p>视频的语音翻译与字幕合成可以分解为如下几个基本步骤:</p>
-<ol>
-<li>视频的语音提取</li>
-<li>语音转文本</li>
-<li>文本双语翻译</li>
-<li>视频字幕合成</li>
-<li>（可选）文本转语音</li>
-<li>（可选）视频语音合成</li>
-</ol>
-<p>其中5，6两个步骤是完全替换视频的语言发音，现阶段效果不好，并且没有原始配音的感觉。</p>
-<h1 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h1><ul>
-<li>基于一个成品的项目<a target="_blank" rel="noopener" href="https://github.com/jianchang512/pyvideotrans/blob/main/README_CN.md">pyvideotrans</a>，后期微调<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/jianchang512/pyvideotrans</span><br><span class="line">$ <span class="built_in">cd</span> pyvideotrans; python -m venv venv &amp;&amp; <span class="built_in">source</span> ./venv/bin/activate</span><br><span class="line">$ pip install -r requirements.txt --no-deps</span><br></pre></td></tr></table></figure></li>
-<li>其中pytorch的安装已经改变了，需要参考如下过程<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/previous-versions/">INSTALLING PREVIOUS VERSIONS OF PYTORCH</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CUDA 12.1</span></span><br><span class="line">pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu121</span><br><span class="line"><span class="comment"># CPU only</span></span><br><span class="line">pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cpu</span><br></pre></td></tr></table></figure></li>
-<li>安装pyaudio出错<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">src/pyaudio/device_api.c:9:10: fatal error: portaudio.h: No such file or directory</span><br><span class="line">    9 | <span class="comment">#include &quot;portaudio.h&quot;</span></span><br><span class="line">      |          ^~~~~~~~~~~~~</span><br><span class="line">compilation terminated.</span><br><span class="line">error: <span class="built_in">command</span> <span class="string">&#x27;/usr/bin/x86_64-linux-gnu-gcc&#x27;</span> failed with <span class="built_in">exit</span> code 1</span><br></pre></td></tr></table></figure>
-安装依赖的开发库<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/12/27/learning-pytorch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/27/learning-pytorch/" class="post-title-link" itemprop="url">Learning PyTorch</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-12-27 11:24:32 / 修改时间：17:03:36" itemprop="dateCreated datePublished" datetime="2023-12-27T11:24:32+08:00">2023-12-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1143127">深度学习中的注意力机制</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/12/07/setup-seaweedfs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/07/setup-seaweedfs/" class="post-title-link" itemprop="url">SeaweedFS安装笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-07 11:20:46" itemprop="dateCreated datePublished" datetime="2023-12-07T11:20:46+08:00">2023-12-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-13 16:27:00" itemprop="dateModified" datetime="2023-12-13T16:27:00+08:00">2023-12-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/fs/" itemprop="url" rel="index"><span itemprop="name">fs</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="SeaweedFS"><a href="#SeaweedFS" class="headerlink" title="SeaweedFS"></a>SeaweedFS</h1><p><a target="_blank" rel="noopener" href="https://github.com/seaweedfs">项目主页</a></p>
-<h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><p>运行环境是一台12C16G的KVM虚拟机</p>
-<ul>
-<li>操作系统是CentOS-7.9<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure></li>
-<li>Kubernetes是k3s-1.28<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl version</span><br><span class="line">Client Version: v1.28.3+k3s2</span><br><span class="line">Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3</span><br><span class="line">Server Version: v1.28.3+k3s2</span><br></pre></td></tr></table></figure></li>
-<li>虚拟机内配置了3块磁盘sda-sdc<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ lsblk</span><br><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0  200G  0 disk </span><br><span class="line">sdb      8:16   0  200G  0 disk </span><br><span class="line">sdc      8:32   0  200G  0 disk </span><br><span class="line">sr0     11:0    1    1M  0 rom  </span><br><span class="line">vda    253:0    0  200G  0 disk </span><br><span class="line">`-vda1 253:1    0  200G  0 part /</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="安装SeaweedFS-Operator"><a href="#安装SeaweedFS-Operator" class="headerlink" title="安装SeaweedFS Operator"></a>安装SeaweedFS Operator</h2><p>先安装operator看看能自动配置到什么程度，安装文档：<a target="_blank" rel="noopener" href="https://github.com/seaweedfs/seaweedfs-operator#installation">https://github.com/seaweedfs/seaweedfs-operator#installation</a></p>
-<ul>
-<li>安装kustomize<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.2.1/kustomize_v5.2.1_linux_amd64.tar.gz</span><br><span class="line">$ tar xvf kustomize_v5.2.1_linux_amd64.tar.gz</span><br><span class="line">$ sudo <span class="built_in">mv</span> kustomize /usr/local/bin/</span><br></pre></td></tr></table></figure></li>
-<li>安装cert-manager<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml</span><br><span class="line">$ $ kubectl apply -f cert-manager.yaml </span><br><span class="line">namespace/cert-manager created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/certificaterequests.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/certificates.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/challenges.acme.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/clusterissuers.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/issuers.cert-manager.io created</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io created</span><br><span class="line">serviceaccount/cert-manager-cainjector created</span><br><span class="line">serviceaccount/cert-manager created</span><br><span class="line">serviceaccount/cert-manager-webhook created</span><br><span class="line">configmap/cert-manager created</span><br><span class="line">configmap/cert-manager-webhook created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-cainjector created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-issuers created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificates created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-orders created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-challenges created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-cluster-view created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-view created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-edit created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-cainjector created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-issuers created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificates created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-orders created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-challenges created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager:leaderelection created</span><br><span class="line">role.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager:leaderelection created</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created</span><br><span class="line">service/cert-manager created</span><br><span class="line">service/cert-manager-webhook created</span><br><span class="line">deployment.apps/cert-manager-cainjector created</span><br><span class="line">deployment.apps/cert-manager created</span><br><span class="line">deployment.apps/cert-manager-webhook created</span><br><span class="line">mutatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created</span><br><span class="line">validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created</span><br></pre></td></tr></table></figure></li>
-<li>查看cert-manager安装情况<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl -n cert-manager get all</span><br><span class="line">Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed <span class="keyword">in</span> v2.</span><br><span class="line">NAME                                          READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/cert-manager-cainjector-c778d44d8-pn8j9   1/1     Running   0          6m53s</span><br><span class="line">pod/cert-manager-7d75f47cc5-z4fwt             1/1     Running   0          6m53s</span><br><span class="line">pod/cert-manager-webhook-55d76f97bb-dt6qh     1/1     Running   0          6m53s</span><br><span class="line"></span><br><span class="line">NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE</span><br><span class="line">service/cert-manager           ClusterIP   10.43.196.173   &lt;none&gt;        9402/TCP   6m53s</span><br><span class="line">service/cert-manager-webhook   ClusterIP   10.43.157.218   &lt;none&gt;        443/TCP    6m53s</span><br><span class="line"></span><br><span class="line">NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/cert-manager-cainjector   1/1     1            1           6m53s</span><br><span class="line">deployment.apps/cert-manager              1/1     1            1           6m53s</span><br><span class="line">deployment.apps/cert-manager-webhook      1/1     1            1           6m53s</span><br><span class="line"></span><br><span class="line">NAME                                                DESIRED   CURRENT   READY   AGE</span><br><span class="line">replicaset.apps/cert-manager-cainjector-c778d44d8   1         1         1       6m53s</span><br><span class="line">replicaset.apps/cert-manager-7d75f47cc5             1         1         1       6m53s</span><br><span class="line">replicaset.apps/cert-manager-webhook-55d76f97bb     1         1         1       6m53s</span><br></pre></td></tr></table></figure></li>
-<li>安装controller-gen<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line">$ go install sigs.k8s.io/controller-tools/cmd/controller-gen@v0.13.0</span><br></pre></td></tr></table></figure></li>
-<li>安装docker<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y yum-utils</span><br><span class="line">$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">$ sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure></li>
-<li>测试docker<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run hello-world</span><br></pre></td></tr></table></figure></li>
-<li>可以预先下载镜像并scp到环境中，测试环境配置.ssh&#x2F;config名称为test<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull gcr.io/distroless/static:nonroot</span><br><span class="line">$ docker save -o static.tar gcr.io/distroless/static:nonroot</span><br><span class="line">$ scp static.tar <span class="built_in">test</span>:</span><br><span class="line"></span><br><span class="line">$ docker load -i ~/static.tar </span><br><span class="line">54ad2ec71039: Loading layer [==================================================&gt;]  327.7kB/327.7kB</span><br><span class="line">6fbdf253bbc2: Loading layer [==================================================&gt;]   51.2kB/51.2kB</span><br><span class="line">7bea6b893187: Loading layer [==================================================&gt;]  3.205MB/3.205MB</span><br><span class="line">ff5700ec5418: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">d52f02c6501c: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">e624a5370eca: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">1a73b54f556b: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">d2d7ec0f6756: Loading layer [==================================================&gt;]  10.24kB/10.24kB</span><br><span class="line">4cb10dd2545b: Loading layer [==================================================&gt;]  225.3kB/225.3kB</span><br><span class="line">Loaded image: gcr.io/distroless/static:nonroot</span><br></pre></td></tr></table></figure></li>
-<li>编译seaweedfs-operator镜像<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ make docker-build</span><br><span class="line"><span class="built_in">echo</span> chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">docker build . -t chrislusf/seaweedfs-operator:v0.0.1</span><br><span class="line">[+] Building 0.8s (17/17) FINISHED</span><br><span class="line"> =&gt; [internal] load .dockerignore</span><br><span class="line"> =&gt; =&gt; transferring context: 2B</span><br><span class="line"> =&gt; [internal] load build definition from Dockerfile</span><br><span class="line"> =&gt; =&gt; transferring dockerfile: 909B</span><br><span class="line"> =&gt; [internal] load metadata <span class="keyword">for</span> gcr.io/distroless/static:nonroot</span><br><span class="line"> =&gt; [internal] load metadata <span class="keyword">for</span> docker.io/library/golang:1.21</span><br><span class="line"> =&gt; [stage-1 1/3] FROM gcr.io/distroless/static:nonroot</span><br><span class="line"> =&gt; [builder 1/9] FROM docker.io/library/golang:1.21</span><br><span class="line"> =&gt; [internal] load build context</span><br><span class="line"> =&gt; =&gt; transferring context: 1.83kB</span><br><span class="line"> =&gt; CACHED [builder 2/9] WORKDIR /workspace</span><br><span class="line"> =&gt; CACHED [builder 3/9] COPY go.mod go.mod</span><br><span class="line"> =&gt; CACHED [builder 4/9] COPY go.sum go.sum</span><br><span class="line"> =&gt; CACHED [builder 5/9] RUN go mod download</span><br><span class="line"> =&gt; CACHED [builder 6/9] COPY main.go main.go</span><br><span class="line"> =&gt; CACHED [builder 7/9] COPY api/ api/</span><br><span class="line"> =&gt; CACHED [builder 8/9] COPY controllers/ controllers/</span><br><span class="line"> =&gt; CACHED [builder 9/9] RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -ldflags=<span class="string">&quot;-s -w&quot;</span> -a -o manager main.go</span><br><span class="line"> =&gt; CACHED [stage-1 2/3] COPY --from=builder /workspace/manager .</span><br><span class="line"> =&gt; exporting to image</span><br><span class="line"> =&gt; =&gt; exporting layers</span><br><span class="line"> =&gt; =&gt; writing image sha256:e978becdc9be42b787a6caa9fa94b6977560d51b807f15d0260f225dbcb61882</span><br><span class="line"> =&gt; =&gt; naming to docker.io/chrislusf/seaweedfs-operator:v0.0.1</span><br></pre></td></tr></table></figure></li>
-<li>安装seaweedfs-operator的CRD<br>目前代码里面有错误，需要修改<code>api/v1/seaweed_webhook.go</code>内的配置注释如下,<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// +kubebuilder:webhook:sideEffects=None,admissionReviewVersions=v1,...</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ make install</span><br><span class="line">/usr/local/bin/controller-gen crd rbac:roleName=manager-role webhook paths=<span class="string">&quot;./...&quot;</span> output:crd:artifacts:config=config/crd/bases</span><br><span class="line">/usr/local/bin/kustomize build config/crd | kubectl apply -f -</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/seaweeds.seaweed.seaweedfs.com unchanged</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$  helm install seaweedfs-operator ./deploy/helm</span><br><span class="line">NAME: seaweedfs-operator</span><br><span class="line">LAST DEPLOYED: Wed Dec 13 16:16:27 2023</span><br><span class="line">NAMESPACE: default</span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get po </span><br><span class="line">NAME                                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">seaweedfs-operator-585b95c8ff-g58st   1/1     Running   0          8m14s</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>至此seaweedfs-operator部署成功，但是功能还不能正常运行，需要进一步调研。<br>目前看seaweedfs-operator完成度较低，使用上问题应该很多，还是应该避免通过这个operator部署。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/12/01/setup-lazy-vim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/01/setup-lazy-vim/" class="post-title-link" itemprop="url">LazyVim安装笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-01 16:09:00" itemprop="dateCreated datePublished" datetime="2023-12-01T16:09:00+08:00">2023-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-04 09:51:36" itemprop="dateModified" datetime="2023-12-04T09:51:36+08:00">2023-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="安装neovim"><a href="#安装neovim" class="headerlink" title="安装neovim"></a>安装neovim</h1><ul>
-<li>Ubuntu 22.04<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ lsb_release -a</span><br><span class="line">Distributor ID:	Ubuntu</span><br><span class="line">Description:	Ubuntu 22.04.3 LTS</span><br><span class="line">Release:	    22.04</span><br><span class="line">Codename:	    jammy</span><br></pre></td></tr></table></figure></li>
-<li>官方安装指南<br><a target="_blank" rel="noopener" href="https://github.com/neovim/neovim/wiki/Installing-Neovim">Installing Neovim</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ brew install newvim</span><br><span class="line">$ nvim -v</span><br><span class="line">NVIM v0.9.4</span><br><span class="line">Build <span class="built_in">type</span>: Release</span><br><span class="line">LuaJIT 2.1.1700008891</span><br><span class="line"></span><br><span class="line">   system vimrc file: <span class="string">&quot;<span class="variable">$VIM</span>/sysinit.vim&quot;</span></span><br><span class="line">  fall-back <span class="keyword">for</span> <span class="variable">$VIM</span>: <span class="string">&quot;/home/linuxbrew/.linuxbrew/Cellar/neovim/0.9.4/share/nvim&quot;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="安装LazyVim"><a href="#安装LazyVim" class="headerlink" title="安装LazyVim"></a>安装LazyVim</h1><ul>
-<li>通过git直接clone代码<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/LazyVim/starter ~/.config/nvim</span><br><span class="line">Cloning into <span class="string">&#x27;/home/yang/.config/nvim&#x27;</span>...</span><br><span class="line">remote: Enumerating objects: 183, <span class="keyword">done</span>.</span><br><span class="line">remote: Total 183 (delta 0), reused 0 (delta 0), pack-reused 183</span><br><span class="line">Receiving objects: 100% (183/183), 55.07 KiB | 503.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (73/73), <span class="keyword">done</span>.</span><br><span class="line">$ <span class="built_in">rm</span> -rf ~/.config/nvim/.git</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="使用nvim"><a href="#使用nvim" class="headerlink" title="使用nvim"></a>使用nvim</h1><ul>
-<li><p>参考默认键配置：<a target="_blank" rel="noopener" href="https://www.lazyvim.org/keymaps">https://www.lazyvim.org/keymaps</a><br>浏览状态按空格键可以看提示，按两下空格键弹窗。</p>
-</li>
-<li><p>安装ripgrep</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ brew install ripgrep</span><br><span class="line">$ rg -V</span><br><span class="line">ripgrep 14.0.3</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/11/30/setup-kubevirt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/11/30/setup-kubevirt/" class="post-title-link" itemprop="url">Kubevirt安装笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-11-30 14:18:50" itemprop="dateCreated datePublished" datetime="2023-11-30T14:18:50+08:00">2023-11-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-07 11:24:24" itemprop="dateModified" datetime="2023-12-07T11:24:24+08:00">2023-12-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="KubeVirt"><a href="#KubeVirt" class="headerlink" title="KubeVirt"></a>KubeVirt</h1><h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><p>运行环境是一台12C16G的KVM虚拟机</p>
-<ul>
-<li>操作系统是CentOS-7.9<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure></li>
-<li>Kubernetes是k3s-1.28<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl version</span><br><span class="line">Client Version: v1.28.3+k3s2</span><br><span class="line">Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3</span><br><span class="line">Server Version: v1.28.3+k3s2</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li>Kubevirt安装1.0.1版本，分两步完成，保留部署的yaml备用</li>
-</ul>
-<p>** kubevirt-v1.1.0有比较严重的问题，部署的虚拟机无法运行，涉及到多处的变更，此版本暂时不可用。**<br>参考：<a target="_blank" rel="noopener" href="https://github.com/kubevirt/kubevirt/issues/10605">Unable to open &#x2F;dev&#x2F;kvm: No such file or directory #10605</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/kubevirt/kubevirt/releases/download/v1.0.1/kubevirt-operator.yaml</span><br><span class="line">$ kubectl create -f kubevirt-operator.yaml</span><br><span class="line"></span><br><span class="line">$ wget https://github.com/kubevirt/kubevirt/releases/download/v1.0.1/kubevirt-cr.yaml</span><br><span class="line">$ kubectl create -f kubevirt-cr.yaml</span><br></pre></td></tr></table></figure>
-<ul>
-<li>监控部署状态<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$ watch kubectl get all -n kubevirt</span><br><span class="line">Every 2.0s: kubectl get all -n  kubevirt                                 Thu Nov 30 14:37:52 2023</span><br><span class="line"></span><br><span class="line">Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed <span class="keyword">in</span> v2.</span><br><span class="line">NAME                                   READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/virt-operator-69985b747d-d9xcw     1/1     Running   0          34m</span><br><span class="line">pod/virt-operator-69985b747d-fs9lx     1/1     Running   0          34m</span><br><span class="line">pod/virt-api-688cc569d4-dksnf          1/1     Running   0          9m28s</span><br><span class="line">pod/virt-controller-58f78787f5-sgmfq   1/1     Running   0          8m3s</span><br><span class="line">pod/virt-controller-58f78787f5-fgkd9   1/1     Running   0          8m3s</span><br><span class="line">pod/virt-handler-6z5g5                 1/1     Running   0          8m3s</span><br><span class="line"></span><br><span class="line">NAME                                  TYPE        CLUSTER-IP	  EXTERNAL-IP   PORT(S)   AGE</span><br><span class="line">service/kubevirt-prometheus-metrics   ClusterIP   None            &lt;none&gt;        443/TCP   9m31s</span><br><span class="line">service/virt-api                      ClusterIP   10.43.76.222    &lt;none&gt;        443/TCP   9m31s</span><br><span class="line">service/kubevirt-operator-webhook     ClusterIP   10.43.217.94    &lt;none&gt;        443/TCP   9m31s</span><br><span class="line">service/virt-exportproxy              ClusterIP   10.43.207.136   &lt;none&gt;        443/TCP   9m31s</span><br><span class="line"></span><br><span class="line">NAME                          DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE</span><br><span class="line">daemonset.apps/virt-handler   1         1         1	      1            1           kubernetes.io/os=linux   8m3s</span><br><span class="line"></span><br><span class="line">NAME                              READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/virt-operator     2/2     2            2           34m</span><br><span class="line">deployment.apps/virt-api          1/1     1            1           9m28s</span><br><span class="line">deployment.apps/virt-controller   2/2     2            2           8m3s</span><br><span class="line"></span><br><span class="line">NAME                                         DESIRED   CURRENT   READY   AGE</span><br><span class="line">replicaset.apps/virt-operator-69985b747d     2         2         2	 34m</span><br><span class="line">replicaset.apps/virt-api-688cc569d4          1         1         1	 9m28s</span><br><span class="line">replicaset.apps/virt-controller-58f78787f5   2         2         2	 8m3s</span><br><span class="line"></span><br><span class="line">NAME                            AGE     PHASE</span><br><span class="line">kubevirt.kubevirt.io/kubevirt   9m51s   Deployed</span><br></pre></td></tr></table></figure></li>
-<li>安装virtctl工具<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/kubevirt/kubevirt/releases/download/v1.0.1/virtctl-v1.0.1-linux-amd64</span><br><span class="line">$ <span class="built_in">chmod</span> +x virtctl-v1.0.1-linux-amd64</span><br><span class="line">$ sudo <span class="built_in">mv</span> virtctl-v1.0.1-linux-amd64 /usr/local/bin/virtctl</span><br><span class="line">$ virtctl version</span><br><span class="line">Client Version: version.Info&#123;GitVersion:<span class="string">&quot;v1.0.1&quot;</span>, GitCommit:<span class="string">&quot;e8e638edc22587ec7be2cc3d983b61763e33f973&quot;</span>, GitTreeState:<span class="string">&quot;clean&quot;</span>, BuildDate:<span class="string">&quot;2023-11-06T16:34:32Z&quot;</span>, GoVersion:<span class="string">&quot;go1.19.9&quot;</span>, Compiler:<span class="string">&quot;gc&quot;</span>, Platform:<span class="string">&quot;linux/amd64&quot;</span>&#125;</span><br><span class="line">Server Version: version.Info&#123;GitVersion:<span class="string">&quot;v1.0.1&quot;</span>, GitCommit:<span class="string">&quot;e8e638edc22587ec7be2cc3d983b61763e33f973&quot;</span>, GitTreeState:<span class="string">&quot;clean&quot;</span>, BuildDate:<span class="string">&quot;2023-11-06T17:30:39Z&quot;</span>, GoVersion:<span class="string">&quot;go1.19.9&quot;</span>, Compiler:<span class="string">&quot;gc&quot;</span>, Platform:<span class="string">&quot;linux/amd64&quot;</span>&#125;</span><br></pre></td></tr></table></figure></li>
-<li>（可选）安装虚拟化工具<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sudo -s</span></span><br><span class="line"><span class="comment"># yum groups mark convert virtualization</span></span><br><span class="line"><span class="comment"># yum groups mark install virtualization</span></span><br><span class="line"><span class="comment"># yum install @virt*</span></span><br><span class="line"><span class="comment"># virt-host-validate</span></span><br><span class="line">setlocale: No such file or directory</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> hardware virtualization                                 : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">if</span> device /dev/kvm exists                                   : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">if</span> device /dev/kvm is accessible                            : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">if</span> device /dev/vhost-net exists                             : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">if</span> device /dev/net/tun exists                               : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;memory&#x27;</span> controller support                      : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;memory&#x27;</span> controller mount-point                  : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpu&#x27;</span> controller support                         : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpu&#x27;</span> controller mount-point                     : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpuacct&#x27;</span> controller support                     : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpuacct&#x27;</span> controller mount-point                 : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpuset&#x27;</span> controller support                      : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpuset&#x27;</span> controller mount-point                  : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;devices&#x27;</span> controller support                     : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;devices&#x27;</span> controller mount-point                 : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;blkio&#x27;</span> controller support                       : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;blkio&#x27;</span> controller mount-point                   : PASS</span><br><span class="line">  QEMU: Checking <span class="keyword">for</span> device assignment IOMMU support                         : WARN (No ACPI DMAR table found, IOMMU either disabled <span class="keyword">in</span> BIOS or not supported by this hardware platform)</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> Linux &gt;= 2.6.26                                         : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> namespace ipc                                           : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> namespace mnt                                           : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> namespace pid                                           : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> namespace uts                                           : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> namespace net                                           : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> namespace user                                          : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;memory&#x27;</span> controller support                      : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;memory&#x27;</span> controller mount-point                  : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpu&#x27;</span> controller support                         : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpu&#x27;</span> controller mount-point                     : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpuacct&#x27;</span> controller support                     : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpuacct&#x27;</span> controller mount-point                 : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpuset&#x27;</span> controller support                      : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;cpuset&#x27;</span> controller mount-point                  : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;devices&#x27;</span> controller support                     : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;devices&#x27;</span> controller mount-point                 : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;blkio&#x27;</span> controller support                       : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">for</span> cgroup <span class="string">&#x27;blkio&#x27;</span> controller mount-point                   : PASS</span><br><span class="line">   LXC: Checking <span class="keyword">if</span> device /sys/fs/fuse/connections exists                   : FAIL (Load the <span class="string">&#x27;fuse&#x27;</span> module to <span class="built_in">enable</span> /proc/ overrides)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
-<li>部署一台虚拟机，镜像是<code>cirros-container-disk-demo</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://kubevirt.io/labs/manifests/vm.yaml --no-check-certificate</span><br><span class="line">$ kubectl apply -f vm.yaml </span><br><span class="line">virtualmachine.kubevirt.io/testvm created</span><br><span class="line">$ kubectl get vms</span><br><span class="line">NAME     AGE    STATUS    READY</span><br><span class="line">testvm   117s   Stopped   False</span><br><span class="line">$ virtctl start testvm</span><br><span class="line">VM testvm was scheduled to start</span><br><span class="line">$ watch kubectl get all</span><br><span class="line">Every 2.0s: kubectl get all                                              Thu Nov 30 19:26:11 2023</span><br><span class="line">Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed <span class="keyword">in</span> v2.</span><br><span class="line">NAME                             READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/virt-launcher-testvm-cq8d4   2/2     Running   0          5m54s</span><br><span class="line"></span><br><span class="line">NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE</span><br><span class="line">service/kubernetes   ClusterIP   10.43.0.1    &lt;none&gt;        443/TCP   17d</span><br><span class="line"></span><br><span class="line">NAME                                        AGE     PHASE     IP           NODENAME   READY</span><br><span class="line">virtualmachineinstance.kubevirt.io/testvm   5m54s   Running   10.42.0.67   chuyang2   True</span><br><span class="line"></span><br><span class="line">NAME                                AGE    STATUS    READY</span><br><span class="line">virtualmachine.kubevirt.io/testvm   9m3s   Running   True</span><br></pre></td></tr></table></figure></li>
-<li>查看部署的虚拟机<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ virtctl console testvm</span><br><span class="line">Successfully connected to testvm console. The escape sequence is ^]</span><br><span class="line">testvm login: cirros</span><br><span class="line">Password: gocubsgo</span><br><span class="line">$ <span class="built_in">uptime</span></span><br><span class="line"> 11:28:33 up 6 min,  1 <span class="built_in">users</span>,  load average: 0.00, 0.00, 0.00</span><br><span class="line">Ctrl+] <span class="comment"># 退出</span></span><br></pre></td></tr></table></figure></li>
-<li>（参考）部署虚拟机的文件内容<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">kubevirt.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">VirtualMachine</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">testvm</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">running:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">kubevirt.io/size:</span> <span class="string">small</span></span><br><span class="line">        <span class="attr">kubevirt.io/domain:</span> <span class="string">testvm</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">domain:</span></span><br><span class="line">        <span class="attr">devices:</span></span><br><span class="line">          <span class="attr">disks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">containerdisk</span></span><br><span class="line">              <span class="attr">disk:</span></span><br><span class="line">                <span class="attr">bus:</span> <span class="string">virtio</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">cloudinitdisk</span></span><br><span class="line">              <span class="attr">disk:</span></span><br><span class="line">                <span class="attr">bus:</span> <span class="string">virtio</span></span><br><span class="line">          <span class="attr">interfaces:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">default</span></span><br><span class="line">            <span class="attr">masquerade:</span> &#123;&#125;</span><br><span class="line">        <span class="attr">resources:</span></span><br><span class="line">          <span class="attr">requests:</span></span><br><span class="line">            <span class="attr">memory:</span> <span class="string">64M</span></span><br><span class="line">      <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">default</span></span><br><span class="line">        <span class="attr">pod:</span> &#123;&#125;</span><br><span class="line">      <span class="attr">volumes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">containerdisk</span></span><br><span class="line">          <span class="attr">containerDisk:</span></span><br><span class="line">            <span class="attr">image:</span> <span class="string">quay.io/kubevirt/cirros-container-disk-demo</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">cloudinitdisk</span></span><br><span class="line">          <span class="attr">cloudInitNoCloud:</span></span><br><span class="line">            <span class="attr">userDataBase64:</span> <span class="string">SGkuXG4=</span></span><br></pre></td></tr></table></figure></li>
-<li>(可选)配置Kubevirt的feature-gates<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">kubevirt.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">KubeVirt</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">kubevirt</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">kubevirt</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">developerConfiguration:</span></span><br><span class="line">      <span class="attr">useEmulation:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">featureGates:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Root</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="删除kubevirt"><a href="#删除kubevirt" class="headerlink" title="删除kubevirt"></a>删除kubevirt</h2><ul>
-<li>先删除kubevirt的CRD，然后删除operator<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> RELEASE=v0.17.0</span><br><span class="line">$ kubectl delete -n kubevirt kubevirt kubevirt --<span class="built_in">wait</span>=<span class="literal">true</span> <span class="comment"># --wait=true should anyway be default</span></span><br><span class="line">$ kubectl delete apiservices v1.subresources.kubevirt.io <span class="comment"># this needs to be deleted to avoid stuck terminating namespaces</span></span><br><span class="line">$ kubectl delete mutatingwebhookconfigurations virt-api-mutator <span class="comment"># not blocking but would be left over</span></span><br><span class="line">$ kubectl delete validatingwebhookconfigurations virt-operator-validator <span class="comment"># not blocking but would be left over</span></span><br><span class="line">$ kubectl delete validatingwebhookconfigurations virt-api-validator <span class="comment"># not blocking but would be left over</span></span><br><span class="line">$ kubectl delete -f kubevirt-operator.yaml --<span class="built_in">wait</span>=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>注意：如果先删除了operator，KV资源会卡在Terminating状态，这时需要手工删除finalizer</li>
-<li>注意：<code>apiservice</code>和<code>webhookconfigurations</code>需要手工删除</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl -n kubevirt patch kv kubevirt --<span class="built_in">type</span>=json -p <span class="string">&#x27;[&#123; &quot;op&quot;: &quot;remove&quot;, &quot;path&quot;: &quot;/metadata/finalizers&quot; &#125;]&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="（参考）删除卡住的命名空间"><a href="#（参考）删除卡住的命名空间" class="headerlink" title="（参考）删除卡住的命名空间"></a>（参考）删除卡住的命名空间</h2><ul>
-<li>Step 1: Dump the contents of the namespace in a temporary file called tmp.json:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get namespace $&#123;NAMESPACE&#125; -o json &gt; tmp.json</span><br></pre></td></tr></table></figure></li>
-<li>Step 2: Edit the temporary file in your favorite text editor:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi tmp.json</span><br></pre></td></tr></table></figure></li>
-<li>Step 3: Remove kubernetes from the finalizer array, and save the file. Keep this terminal open until the namespace is deleted. To start a proxy server at <a target="_blank" rel="noopener" href="http://127.0.0.1:8001/">http://127.0.0.1:8001</a>, use the proxy subcommand:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl proxy</span><br></pre></td></tr></table></figure></li>
-<li>Setp 4: From a separate window, run this command:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -k -H &quot;Content-Type: application/json&quot; -X PUT --data-binary @tmp.json http://127.0.0.1:8001/api/v1/namespaces/$&#123;NAMESPACE&#125;/finalize</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/11/29/learning-react/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="伤心桥下春波绿，曾是惊鸿照影来。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
+      <meta itemprop="name" content="在人间">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/11/29/learning-react/" class="post-title-link" itemprop="url">Learning React</a>
+            <a href="/2023/11/29/learning-react/" class="post-title-link" itemprop="url">如何学习React</a>
         </h2>
 
         <div class="post-meta">
@@ -953,7 +508,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-27 11:25:36" itemprop="dateModified" datetime="2023-12-27T11:25:36+08:00">2023-12-27</time>
+                <time title="修改时间：2024-03-26 11:00:15" itemprop="dateModified" datetime="2024-03-26T11:00:15+08:00">2024-03-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -961,11 +516,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
+                  <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">programming</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                  <a href="/categories/programming/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
                 </span>
             </span>
 
@@ -980,7 +535,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="如何学习React"><a href="#如何学习React" class="headerlink" title="如何学习React"></a>如何学习React</h1><p><a target="_blank" rel="noopener" href="https://github.com/petehunt/react-howto/blob/master/README-zh.md">https://github.com/petehunt/react-howto/blob/master/README-zh.md</a></p>
+          <p><a target="_blank" rel="noopener" href="https://github.com/petehunt/react-howto/blob/master/README-zh.md">https://github.com/petehunt/react-howto/blob/master/README-zh.md</a></p>
 <p>如果你是一个 React (或者前端) 新手, 出于以下的原因, 你可能会对这个生态圈感到困惑:</p>
 <ul>
 <li>React 的目标群体历来是喜欢尝试新事物的开发者和前端专家.</li>
@@ -1035,225 +590,6 @@
 <p>如果你决定使用 Flux, 现在最流行的、文档最全的 Flux 库是 <a target="_blank" rel="noopener" href="http://redux.js.org/">Redux</a>. 当然也有许多其他选择, 你或者会有兴趣尝试使用它们, 但我的建议是只需要用最流行的 Redux 就足够了.</p>
 <h2 id="学习-Immutable-js"><a href="#学习-Immutable-js" class="headerlink" title="学习 Immutable.js"></a>学习 Immutable.js</h2><p><a target="_blank" rel="noopener" href="https://facebook.github.io/immutable-js/">Immutable.js</a> 提供了一系列的数据结构, 以帮助解决构造 React 应用时的某些性能问题. 这是一个很棒的库, 你可能会在应用发展的过程里大量用到它, 但直到你在意识到性能问题以前, 它是完全不必要的.</p>
 <h2 id="学习-Relay-Falcor-等"><a href="#学习-Relay-Falcor-等" class="headerlink" title="学习 Relay, Falcor 等"></a>学习 Relay, Falcor 等</h2><p>这些技术可以帮你减少 AJAX 请求数, 它们仍然是非常前沿的, 所以如果你没有遇到过多 AJAX 请求的问题, 就不需要用到 Relay 或者 Falcor.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/10/27/2023-wk44-project-euler/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/27/2023-wk44-project-euler/" class="post-title-link" itemprop="url">Project Euler</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-10-27 15:12:46 / 修改时间：17:01:40" itemprop="dateCreated datePublished" datetime="2023-10-27T15:12:46+08:00">2023-10-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/math/" itemprop="url" rel="index"><span itemprop="name">math</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="欧拉项目"><a href="#欧拉项目" class="headerlink" title="欧拉项目"></a>欧拉项目</h1><p><a target="_blank" rel="noopener" href="https://projecteuler.net/about">Project Euler</a> 是一系列数学&#x2F;计算机编程问题，需要深入的数学洞察能力才能解决。这其中数学提供了优雅有效的方法，计算机程序给出最终的答案。</p>
-<p><code>Project Euler</code>的愿景和动力是提供一个智力探索的平台，投身到不熟悉的领域，学习新的知识，重建自身的认知。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/08/28/geographical-mark/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/28/geographical-mark/" class="post-title-link" itemprop="url">地理印记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-08-28 17:23:48" itemprop="dateCreated datePublished" datetime="2023-08-28T17:23:48+08:00">2023-08-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-27 17:14:29" itemprop="dateModified" datetime="2023-10-27T17:14:29+08:00">2023-10-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index"><span itemprop="name">life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>手绘地图</p>
-<h2 id="地理"><a href="#地理" class="headerlink" title="地理"></a>地理</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2023/08/28/frontend-journey-for-backend-programmers/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jack Chu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="踏莎行">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/28/frontend-journey-for-backend-programmers/" class="post-title-link" itemprop="url">后端程序员的前端学习旅程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-08-28 16:36:50" itemprop="dateCreated datePublished" datetime="2023-08-28T16:36:50+08:00">2023-08-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-27 17:03:09" itemprop="dateModified" datetime="2023-10-27T17:03:09+08:00">2023-10-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/it/" itemprop="url" rel="index"><span itemprop="name">it</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>后端程序员学习前端技术的旅程。</p>
-<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>阮一峰的<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2023/08/typescript-tutorial.html">《TypeScript 教程》</a>。<br><a target="_blank" rel="noopener" href="https://wangdoc.com/typescript/"><img src="https://cdn.beekka.com/blogimg/asset/202308/bg2023080705.webp" alt="《TypeScript"></a></p>
-<p>还有更基础的<a target="_blank" rel="noopener" href="https://wangdoc.com/javascript/">《JavaScript 教程》</a>和<a target="_blank" rel="noopener" href="https://wangdoc.com/es6/">《ES6 教程》</a>。<br>如果没有javascript基础，可以从这两个教程入门。</p>
 
       
     </div>
@@ -1328,24 +664,28 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Jack Chu</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">伤心桥下春波绿，曾是惊鸿照影来。</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">分类</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">13</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -1377,7 +717,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jack Chu</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
         
