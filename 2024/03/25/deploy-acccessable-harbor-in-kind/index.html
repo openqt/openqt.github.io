@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"openqt.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="部署Kubernetes及必要服务 docker版本24.0.5 12345678910111213141516171819202122232425262728$ docker versionClient: Version:           24.0.5 API version:       1.43 Go version:        go1.20.3 Git commit:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kind集群内部署可访问的Harbor服务">
+<meta property="og:url" content="https://openqt.github.io/2024/03/25/deploy-acccessable-harbor-in-kind/index.html">
+<meta property="og:site_name" content="在人间">
+<meta property="og:description" content="部署Kubernetes及必要服务 docker版本24.0.5 12345678910111213141516171819202122232425262728$ docker versionClient: Version:           24.0.5 API version:       1.43 Go version:        go1.20.3 Git commit:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-25T05:36:30.000Z">
+<meta property="article:modified_time" content="2024-10-12T09:21:57.724Z">
+<meta property="article:author" content="Jack Chu">
+<meta property="article:tag" content="harbor">
+<meta property="article:tag" content="kind">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://openqt.github.io/2024/03/25/deploy-acccessable-harbor-in-kind/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>kind集群内部署可访问的Harbor服务 | 在人间</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">在人间</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://openqt.github.io/2024/03/25/deploy-acccessable-harbor-in-kind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jack Chu">
+      <meta itemprop="description" content="伤心桥下春波绿，曾是惊鸿照影来。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在人间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          kind集群内部署可访问的Harbor服务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-03-25 13:36:30" itemprop="dateCreated datePublished" datetime="2024-03-25T13:36:30+08:00">2024-03-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-12 17:21:57" itemprop="dateModified" datetime="2024-10-12T17:21:57+08:00">2024-10-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/devops/" itemprop="url" rel="index"><span itemprop="name">devops</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/devops/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="部署Kubernetes及必要服务"><a href="#部署Kubernetes及必要服务" class="headerlink" title="部署Kubernetes及必要服务"></a>部署Kubernetes及必要服务</h2><ul>
+<li><p>docker版本24.0.5</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ docker version</span><br><span class="line">Client:</span><br><span class="line"> Version:           24.0.5</span><br><span class="line"> API version:       1.43</span><br><span class="line"> Go version:        go1.20.3</span><br><span class="line"> Git commit:        24.0.5-0ubuntu1~22.04.1</span><br><span class="line"> Built:             Mon Aug 21 19:50:14 2023</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          24.0.5</span><br><span class="line">  API version:      1.43 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.20.3</span><br><span class="line">  Git commit:       24.0.5-0ubuntu1~22.04.1</span><br><span class="line">  Built:            Mon Aug 21 19:50:14 2023</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     <span class="literal">true</span></span><br><span class="line"> containerd:</span><br><span class="line">  Version:          1.7.2</span><br><span class="line">  GitCommit:        </span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.1.0-0ubuntu1.1</span><br><span class="line">  GitCommit:        </span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:        </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>kind版本v0.22.0</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kind version</span><br><span class="line">kind v0.22.0 go1.21.1 linux/amd64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>kind集群配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">Cluster</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">kind.x-k8s.io/v1alpha4</span></span><br><span class="line"><span class="attr">containerdConfigPatches:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">|-</span></span><br><span class="line"><span class="string">  [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry]</span></span><br><span class="line"><span class="string">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.mirrors]</span></span><br><span class="line"><span class="string">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.mirrors.&quot;docker.io&quot;]</span></span><br><span class="line"><span class="string">        endpoint = [&quot;https://registry-1.docker.io&quot;]</span></span><br><span class="line"><span class="string">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.mirrors.&quot;gcr.io&quot;]</span></span><br><span class="line"><span class="string">        endpoint = [&quot;https://gcr.m.daocloud.io&quot;]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="attr">networking:</span></span><br><span class="line">  <span class="attr">apiServerAddress:</span> <span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line">  <span class="attr">apiServerPort:</span> <span class="number">6443</span></span><br><span class="line"></span><br><span class="line"><span class="attr">nodes:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">role:</span> <span class="string">control-plane</span></span><br><span class="line">  <span class="attr">kubeadmConfigPatches:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">|</span></span><br><span class="line"><span class="string">    kind: InitConfiguration</span></span><br><span class="line"><span class="string">    nodeRegistration:</span></span><br><span class="line"><span class="string">      kubeletExtraArgs:</span></span><br><span class="line"><span class="string">        node-labels: &quot;ingress-ready=true&quot;</span></span><br><span class="line"><span class="string"></span>  <span class="attr">extraPortMappings:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">31000</span></span><br><span class="line">    <span class="attr">hostPort:</span> <span class="number">21000</span></span><br><span class="line">    <span class="attr">protocol:</span> <span class="string">TCP</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署Kubernetes集群（单节点）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ kind create cluster --name harbor --config demo.yaml</span><br><span class="line">Creating cluster <span class="string">&quot;harbor&quot;</span> ...</span><br><span class="line"> ✓ Ensuring node image (kindest/node:v1.29.2) 🖼</span><br><span class="line"> ✓ Preparing nodes 📦  </span><br><span class="line"> ✓ Writing configuration 📜 </span><br><span class="line"> ✓ Starting control-plane 🕹️ </span><br><span class="line"> ✓ Installing CNI 🔌 </span><br><span class="line"> ✓ Installing StorageClass 💾 </span><br><span class="line">Set kubectl context to <span class="string">&quot;kind-harbor&quot;</span></span><br><span class="line">You can now use your cluster with:</span><br><span class="line"></span><br><span class="line">kubectl cluster-info --context kind-harbor</span><br><span class="line"></span><br><span class="line">Not sure what to <span class="keyword">do</span> next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证集群(默认context已经修改为最新部署的kind-harbor)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get no</span><br><span class="line">NAME                   STATUS   ROLES           AGE   VERSION</span><br><span class="line">harbor-control-plane   Ready    control-plane   37s   v1.29.2</span><br><span class="line"></span><br><span class="line">$ kubectl get po -A</span><br><span class="line">NAMESPACE            NAME                                           READY   STATUS    RESTARTS   AGE</span><br><span class="line">kube-system          coredns-76f75df574-6zqwf                       1/1     Running   0          98s</span><br><span class="line">kube-system          coredns-76f75df574-kwtm7                       1/1     Running   0          98s</span><br><span class="line">kube-system          etcd-harbor-control-plane                      1/1     Running   0          112s</span><br><span class="line">kube-system          kindnet-6xcrd                                  1/1     Running   0          98s</span><br><span class="line">kube-system          kube-apiserver-harbor-control-plane            1/1     Running   0          113s</span><br><span class="line">kube-system          kube-controller-manager-harbor-control-plane   1/1     Running   0          113s</span><br><span class="line">kube-system          kube-proxy-sslv8                               1/1     Running   0          98s</span><br><span class="line">kube-system          kube-scheduler-harbor-control-plane            1/1     Running   0          113s</span><br><span class="line">local-path-storage   local-path-provisioner-7577fdbbfb-9zgqc        1/1     Running   0          98s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取cert-manager的Chart版本v1.14.3</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> Chart.yaml</span><br><span class="line">name: cert-manager</span><br><span class="line">appVersion: v1.14.3</span><br><span class="line">version: v1.14.3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署cert-manager</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ helm install cert-manager --namespace cert-manager --create-namespace --kube-context kind-harbor .</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取traefik的Chart版本26.1.0</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> Chart.yaml</span><br><span class="line">name: traefik</span><br><span class="line">appVersion: v2.11.0</span><br><span class="line">version: 26.1.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署traefik</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ helm install traefik --namespace kube-system --create-namespace --kube-context kind-harbor .</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改traefik的service配置</p>
+</li>
+</ul>
+<ol>
+<li>修改traefik的service类型，LoadBalancer &#x3D;&gt; NodePort。</li>
+<li>修改nodePort端口为31000，与之前部署集群的对外端口对应</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">websecure</span></span><br><span class="line">    <span class="attr">nodePort:</span> <span class="number">31000</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">443</span></span><br><span class="line">    <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="string">websecure</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">NodePort</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改local-path以支持ReadWriteMany模式<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl edit cm local-path-config -n local-path-storage</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>更新config.json如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">config.json:</span> <span class="string">|-</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">            &quot;nodePathMap&quot;:[</span></span><br><span class="line"><span class="string">            &#123;</span></span><br><span class="line"><span class="string">                    &quot;node&quot;:&quot;DEFAULT_PATH_FOR_NON_LISTED_NODES&quot;,</span></span><br><span class="line"><span class="string">                    &quot;paths&quot;:[&quot;/var/local-path-provisioner&quot;]</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            ]</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">config.json:</span> <span class="string">|-</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">      &quot;sharedFileSystemPath&quot;: &quot;/opt/local-path-provisioner&quot;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>重启local-path服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl -n local-path-storage get po -o jsonpath=<span class="string">&quot;&#123;.items[].metadata.name&#125;&quot;</span> | xargs kubectl -n local-path-storage delete po </span><br></pre></td></tr></table></figure>
+
+
+<h2 id="部署Harbor服务"><a href="#部署Harbor服务" class="headerlink" title="部署Harbor服务"></a>部署Harbor服务</h2><ul>
+<li>获取harbor的Chart版本19.9.0</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/bitnami/charts/tree/main/bitnami/harbor">https://github.com/bitnami/charts/tree/main/bitnami/harbor</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> Chart.yaml</span><br><span class="line">name: harbor</span><br><span class="line">apiVersion: v2</span><br><span class="line">version: 19.9.0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改values.yaml</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">externalURL:</span> <span class="string">https://harbor.internal.com</span></span><br><span class="line"><span class="attr">adminPassword:</span> <span class="string">&quot;Passw0rd&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ingress:</span></span><br><span class="line">  <span class="attr">certProvider:</span> <span class="string">&quot;cert-manager&quot;</span></span><br><span class="line">  <span class="attr">core:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">harbor.internal.com</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>部署harbor<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ helm upgrade harbor -i --namespace harbor --create-namespace --<span class="built_in">set</span> global.storageClass=standard --kube-context kind-harbor .</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>查看部署的POD情况</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl -n harbor get po</span><br><span class="line">NAME                                 READY   STATUS    RESTARTS      AGE</span><br><span class="line">harbor-core-75f79fb9f9-qpblp         1/1     Running   0             14m</span><br><span class="line">harbor-jobservice-5677b948b8-sw87s   1/1     Running   0             14m</span><br><span class="line">harbor-portal-67995b4946-mhvkn       1/1     Running   0             14m</span><br><span class="line">harbor-postgresql-0                  1/1     Running   0             14m</span><br><span class="line">harbor-redis-master-0                1/1     Running   0             14m</span><br><span class="line">harbor-registry-5fb59b549-c86kj      2/2     Running   0             14m</span><br><span class="line">harbor-trivy-0                       1/1     Running   0             14m</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>配置域名<br>在<code>/etc/hosts</code>内配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.2.110 harbor.internal.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问harbor页面，输入之前配置的admin的密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://harbor.internal.com:21000</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="修改Harbor服务类型"><a href="#修改Harbor服务类型" class="headerlink" title="修改Harbor服务类型"></a>修改Harbor服务类型</h2><p>从Statefulset修改为Deployment。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">StatefulSet</span> <span class="string">=&gt;</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">    <span class="comment"># serviceName # 需要注释掉</span></span><br><span class="line">    <span class="string">updateStrategy</span> <span class="string">=&gt;</span> <span class="string">strategy</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 需要将整个volumeClaimTemplates改为PersistentVolumeClaim形式</span></span><br><span class="line">    <span class="comment"># 同时要增加volumes声明域</span></span><br><span class="line">    <span class="string">volumeClaimTemplates</span> <span class="string">=&gt;</span> <span class="string">PersistentVolumeClaim</span> </span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">data</span></span><br><span class="line">          <span class="attr">persistentVolumeClaim:</span></span><br><span class="line">            <span class="attr">claimName:</span> <span class="string">data</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/harbor/" rel="tag"># harbor</a>
+              <a href="/tags/kind/" rel="tag"># kind</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/19/ml-basic/" rel="prev" title="机器学习基础">
+      <i class="fa fa-chevron-left"></i> 机器学习基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/03/26/update-trivy-data-by-go-restful/" rel="next" title="通过go-restful更新Harbor的Trivy数据库">
+      通过go-restful更新Harbor的Trivy数据库 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2Kubernetes%E5%8F%8A%E5%BF%85%E8%A6%81%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">部署Kubernetes及必要服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2Harbor%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">部署Harbor服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9Harbor%E6%9C%8D%E5%8A%A1%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">修改Harbor服务类型</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jack Chu</p>
+  <div class="site-description" itemprop="description">伤心桥下春波绿，曾是惊鸿照影来。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Chu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
